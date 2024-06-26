@@ -34,5 +34,6 @@ _Output_analysis_: notebooks for recreating figures in manuscript
 _Antibody_generation_: script for generating antibody sequences against RBD. This yields a CSV file with raw sequences which can be analyzed using the notebooks in the previous directory.
 - To run, specify n number of sequences to generate, and an output csv name.
 - Example: python generate_antibodies.py --n=5 --output=MAGE-RBD_antibodies.csv
+- This was tested on an Nvidia A6000 and took ~15 seconds to generate one antibody sequence.
   
-_Fine_tuning_: script and example dataset for fine-tuning Progen2.
+_Fine_tuning_: script and example subset dataset (n=1000) for fine-tuning Progen2.
