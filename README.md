@@ -1,6 +1,6 @@
-# MAGE-RBD
-## Generation of novel paired heavy-light chain antibody sequences against SARS-CoV-2 using large language models
-Monoclonal Antibody GEnerator (MAGE) - a fine-tuned LLM for generating paired heavy-light antibody variable sequences with predicted binding specificity to wildtype SARS-CoV-2 receptor binding domain (RBD).
+# MAGE
+## Generation of novel paired heavy-light chain antibody sequences using large language models
+Monoclonal Antibody GEnerator (MAGE) - a fine-tuned LLM for generating paired heavy-light antibody variable sequences with predicted binding specificity to antigen prompt.
 
 This repository contains Python scripts to accompany Wasdin et al., including model fine-tuning, antibody generation, and the follow-up analyses presented in the manuscript. All analyses were initially ran in Linux Red Hat 8.4, but have also been tested in Ubuntu 22.04. For training, 4 V100s were used and for antibody generation, an Nvidia A6000 was used.
 
@@ -25,16 +25,29 @@ Once downloaded, move to the 'progen' directory here in order to import within t
 Follow-up Analyses used these additional libraries:
 * python-Levenshtein 0.25.0
 * pandarallel 1.6.4 (to speed up Pandas functions)
-* Abnumber 0.3.2 (this should
+* Abnumber 0.3.2
 
 ## Overview of directories
 _Data cleaning_: notebooks for cleaning data, including a variety of different sources.
 
 _Output_analysis_: notebooks for recreating figures in manuscript
+- Include selection scripts for RBD, RSV-A, and H5/TX/24
 
 _Antibody_generation_: script for generating antibody sequences against RBD. This yields a CSV file with raw sequences which can be analyzed using the notebooks in the previous directory.
-- To run, specify n number of sequences to generate, and an output csv name.
-- Example: python generate_antibodies.py --n=1 --output=MAGE_antibodies.csv
-- This was tested on an Nvidia A6000 and took ~15 seconds to generate one antibody sequence.
-  
+
 _Fine_tuning_: script and example subset dataset (n=1000) for fine-tuning Progen2.
+
+_model_epoch4_: Model card for loading into generate antibodies. This will be hosted on HuggingFace once published, but for now can be accessed at (permission must be requested to access):
+* https://vumc365-my.sharepoint.com/:f:/g/personal/perry_t_wasdin_1_vumc_org/Eho31YUambxEsHu0laNRWREBpQHlNMfFoDust5L49Fj9Xw?e=X5MeRq
+
+
+## Tutorial for antibody generation
+- Antibody sequences can be generated using the generate_antibodies.py Python script
+- An antigen prompt should be provided as an amino acid sequence with any signal peptides or transmembrane regions removed, example:
+    SARS-CoV-2 index strain RBD: RVQPTESIVRFPNITNLCPFGEVFNATRFASVYAWNRKRISNCVADYSVLYNSASFSTFKCYGVSPTKLNDLCFTNVYADSFVIRGDEVRQIAPGQTGKIADYNYKLPDDFTGCVIAWNSNNLDSKVGGNYNYLYRLFRKSNLKPFERDISTEIYQAGSTPCNGVEGFNCYFPLQSYGFQPTNGVGYQPYRVVVLSFELLHAPATVCGPKKSTNLVKNKCVNF
+    - This is provided as a string named antigen_prompt within the python script
+- When running the script, specify n number of sequences to generate, and an output csv name:
+    - Example: python generate_antibodies.py --n=1 --output=MAGE_antibodies.csv
+- This was tested on an Nvidia A6000 and took ~15 seconds to generate one antibody sequence against RBD.
+- To annotate and analyze output sequences without installing the follow-up analyses libraries listed above, generated sequences can be uploaded to the IMGT Domain Gap Align webserver: https://www.imgt.org/3Dstructure-DB/cgi/DomainGapAlign.cgi
+  
