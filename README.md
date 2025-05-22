@@ -46,7 +46,7 @@ _model_epoch4_: Model card for loading into generate antibodies. This will be ho
 - An antigen prompt should be provided as an amino acid sequence with any signal peptides or transmembrane regions removed, example:
     SARS-CoV-2 index strain RBD: RVQPTESIVRFPNITNLCPFGEVFNATRFASVYAWNRKRISNCVADYSVLYNSASFSTFKCYGVSPTKLNDLCFTNVYADSFVIRGDEVRQIAPGQTGKIADYNYKLPDDFTGCVIAWNSNNLDSKVGGNYNYLYRLFRKSNLKPFERDISTEIYQAGSTPCNGVEGFNCYFPLQSYGFQPTNGVGYQPYRVVVLSFELLHAPATVCGPKKSTNLVKNKCVNF
     - This is provided as a string named antigen_prompt within the python script
-- When running the script, specify n number of sequences to generate, and an output csv name:
+- When running the script from the terminal, specify n number of sequences to generate, and an output csv name:
     - Example: python generate_antibodies.py --n=1 --output=MAGE_antibodies.csv
 - This was tested on an Nvidia A6000 and took ~15 seconds to generate one antibody sequence against RBD.
 - To annotate and analyze output sequences without installing the follow-up analyses libraries listed above, generated sequences can be uploaded to the IMGT Domain Gap Align webserver: https://www.imgt.org/3Dstructure-DB/cgi/DomainGapAlign.cgi
