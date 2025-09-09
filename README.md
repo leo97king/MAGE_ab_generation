@@ -1,5 +1,5 @@
 # MAGE
-## Generation of novel paired heavy-light chain antibody sequences using large language models
+## Generation of novel paired heavy-light chain antibodies using large language models
 Monoclonal Antibody GEnerator (MAGE) - a fine-tuned LLM for generating paired heavy-light antibody variable sequences with predicted binding specificity to antigen prompt.
 
 This repository contains Python scripts to accompany Wasdin et al., including model fine-tuning, antibody generation, and the follow-up analyses presented in the manuscript. All analyses were initially ran in Linux Red Hat 8.4, but have also been tested in Ubuntu 22.04. For training, 4 V100s were used and for antibody generation, an Nvidia A6000 was used.
