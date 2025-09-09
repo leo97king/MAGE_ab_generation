@@ -2,7 +2,7 @@
 ## Generation of novel paired heavy-light chain antibodies using large language models
 Monoclonal Antibody GEnerator (MAGE) - a fine-tuned LLM for generating paired heavy-light antibody variable sequences with predicted binding specificity to antigen prompt.
 
-This repository contains Python scripts to accompany Wasdin et al., including model fine-tuning, antibody generation, and the follow-up analyses presented in the manuscript. All analyses were initially ran in Linux Red Hat 8.4, but have also been tested in Ubuntu 22.04. For training, 4 V100s were used and for antibody generation, an Nvidia A6000 was used.
+This repository contains Python scripts to accompany Wasdin et al., including model fine-tuning, antibody generation, and the follow-up analyses presented in the manuscript. All analyses were initially ran in Linux Red Hat 8.4, but have also been tested in Ubuntu 22.04. For training, 4 V100s were used and for antibody generation, an Nvidia A6000 was used. The model weights are hosted on HuggingFace at https://huggingface.co/perrywasdin/MAGE_V1.
 
 The following libraries are needed, we recommened installing these within a Conda environment with Python 3.11. Note that other versions are likely compatible, but we used the following. 
 * Numpy 1.26
@@ -36,9 +36,6 @@ _Output_analysis_: notebooks for recreating figures in manuscript
 _Antibody_generation_: script for generating antibody sequences against RBD. This yields a CSV file with raw sequences which can be analyzed using the notebooks in the previous directory.
 
 _Fine_tuning_: script and example subset dataset (n=1000) for fine-tuning Progen2.
-
-_model_epoch4_: Model card for loading into generate antibodies. This will be hosted on HuggingFace once published, but for now can be accessed at (permission must be requested to access):
-* https://vumc365-my.sharepoint.com/:f:/g/personal/perry_t_wasdin_1_vumc_org/Eho31YUambxEsHu0laNRWREBpQHlNMfFoDust5L49Fj9Xw?e=X5MeRq
 
 
 ## Tutorial for antibody generation
