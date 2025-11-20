@@ -35,7 +35,7 @@ tokenizer.save("progen_custom_tokenizer.json")
 tokenizer = PreTrainedTokenizerFast(tokenizer_file="progen_custom_tokenizer.json") #, return_tensors='pt')
 
 # Define new special tokens
-new_special_tokens = ['[LC]', '[SEP]']
+new_special_tokens = ['[PEP]', '[HLA]', '[SEP]']
 
 tokenizer.vocab.pop('2', None)
 tokenizer.vocab.pop('1', None)
@@ -50,12 +50,18 @@ tokenizer.eos_token = '<|eos|>'
 
 print('Tokenizer vocab size: ' + str(tokenizer.vocab_size))
 
-input_seqs = pd.read_csv('./final_inputs_full-model_v2_24-03-12.csv', index_col=0)
+input_seqs = pd.read_csv('./Fine_tuning/phla_example_training_data.csv', index_col=0)
 
 
 # Using 1 and seperator and 2 as unknown AA (replacing X)
-input_seqs['SEQ'] =  input_seqs['antigen_seq'] + '[SEP]' + input_seqs['VH_abnum'] + '[LC]' + input_seqs['VL_abnum']
-# input_seqs['SEQ'] = input_seqs['SEQ'].apply(lambda x: x.replace('X', '1'))
+input_seqs['SEQ'] = (
+    input_seqs['peptide']
+    + '[PEP]'
+    + input_seqs['HLA_sequence']
+    + '[SEP]'
+    + input_seqs['cdr3']
+)
+input_seqs['SEQ'] = input_seqs['SEQ'].apply(lambda x: x.replace('X', '1'))
 input_seqs = input_seqs[~input_seqs['SEQ'].isna()]
 input_seqs['SEQ'].apply(len).max()
 print(input_seqs.shape)
